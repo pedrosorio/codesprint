@@ -39,6 +39,7 @@ int main() {
   for(int i=0;i<K;i++)
     cin >> w[i];
   
+  //Model the problem as a graph that has edges where permutations are possible
   for(int i=0;i<K;i++) {
     con[i]=-1;
     for(int j=0;j<K;j++) {
@@ -48,6 +49,7 @@ int main() {
     }
   }
   
+  //Find connected components
   int c=0;
   for(int i=0;i<K;i++) {
     if(con[i]==-1) {
@@ -56,6 +58,8 @@ int main() {
     }
   }
   
+  //Since swapping allows to place the parts that belong to a connected component
+  //in any order, let's sort them to maximize the center of mass
   vector<int> swap[c],pos[c];
   for(int i=0;i<K;i++) {
     swap[con[i]-1].push_back(w[i]);

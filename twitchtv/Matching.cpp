@@ -22,7 +22,7 @@ using namespace std;
 
 const long long MOD = 1000000007;
 
-
+//auxiliary function that computes recursively a^m in O(log m)
 long long exp(long long a, long long m) {
   if(m==1)
     return a;
@@ -41,28 +41,21 @@ long long exp(long long a, long long m) {
 int main() {
   int N;
   cin >> N;
+  //The solution corresponds to the N-th Catalan Number
+  //Which is equal to (2N!)/(N! * (N+1)!)
   long long v=1,dv=1;
+  //Compute numerator
   for(int i=N+2;i<=2*N;i++)
     v=(v*i)%MOD;
+  //Compute denominator
   for(int i=1;i<=N;i++)
     dv=(dv*i)%MOD;
   
+  //Find modular multiplicative inverse (MMI( of the denominator
   dv = exp(dv,MOD-2);
   
+  //Multiply the numerator by the MMI of the denominator (equivalent to dividing and finding the result modulo something)
   v = (v * dv)%MOD;
-  
-  /*
-  for(int i=0;i<=100;i++)
-    ways[i][0] = 1;
-  for(N=1;N<=100;N++) {
-    for(int m=1;m<=N;m++) {
-      ways[m][m] = ways[m][m-1];
-      for(int b=m+1;b<=N;b++)
-        ways[b][m] = (ways[b-1][m] + ways[b][m-1])%MOD;
-    }
-    cout << N << ": " << ways[N][N] << endl;
-  }
-  */
   
   cout << v << endl;
   

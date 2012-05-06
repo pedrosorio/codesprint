@@ -25,6 +25,8 @@ int N,M,mp[201][201],visited[201],row[201],col[201];
 vector<pair<int, int> > v;
 vector<int> lst[201];
 
+
+//find maximum matching on the graph using DFS
 bool find_match(int where) {
      if (where == -1)
        return true;
@@ -62,7 +64,7 @@ int main() {
     }
   }
   
-  
+
   cout << how_many(N,M) << endl;
   
   
